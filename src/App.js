@@ -16,7 +16,7 @@ class App extends Component {
   addMessage = (message) => {
     const messagesInState = { ...this.state.messages }
     messagesInState[`message-${Date.now()}`] = message
-    Object.keys(messagesInState).slice(0, -10).forEach(key => {
+    Object.keys(messagesInState).slice(0, -30).forEach(key => {
       messagesInState[key] = null
     })
     //    messagesInState[`${Math.floor(Math.random() * Math.floor(8999879879878978987))}`] = message
