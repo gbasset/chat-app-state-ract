@@ -50,7 +50,9 @@ class Formulaire extends PureComponent {
                 <Picker
                     title="Pick your emoji…"
                     emoji="point_up"
-                    onSelect={emoji => this.setState({ message: this.state.message + emoji.native }, this.setState({ emojiPickerState: !this.state.emojiPickerState }))}
+                    onSelect={emoji => this.setState({ message: this.state.message + emoji.native }
+                        // ,this.setState({ emojiPickerState: !this.state.emojiPickerState })
+                    )}
                     i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }}
                     style={{ position: 'absolute', bottom: '20px', right: '20px', zIndex: '2000' }}
                 />
