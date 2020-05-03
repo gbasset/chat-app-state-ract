@@ -199,3 +199,12 @@ button:disabled {
   margin: 0;
   background: #eceff1;
 }
+
+.btnSmile {
+  width: 50px;
+  /* position: absolute; */
+  background-color: rgb(255, 242, 64);
+  bottom: 85px;
+  border-radius: 5px;
+  right: 56px;
+}

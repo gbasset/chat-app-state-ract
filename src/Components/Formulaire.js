@@ -1,9 +1,13 @@
 import React, { PureComponent } from 'react';
 
+import "emoji-mart/css/emoji-mart.css";
+import '../App.css'
+import { Picker } from "emoji-mart";
 class Formulaire extends PureComponent {
 
     state = {
         message: '',
+        emojiPickerState: false,
         length: this.props.length
     }
 
@@ -35,10 +39,29 @@ class Formulaire extends PureComponent {
             }
         }
     }
+    triggerPicker = (event) => {
+        event.preventDefault();
+        this.setState({ emojiPickerState: !this.state.emojiPickerState });
+    }
     render() {
+        let emojiPicker;
+        if (this.state.emojiPickerState) {
+            emojiPicker = (
+                <Picker
+                    title="Pick your emoji…"
+                    emoji="point_up"
+                    onSelect={emoji => this.setState({ message: this.state.message + emoji.native }, this.setState({ emojiPickerState: !this.state.emojiPickerState }))}
+                    i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }}
+                    style={{ position: 'absolute', bottom: '20px', right: '20px', zIndex: '2000' }}
+                />
+            );
+        }
+
+
         console.log(this.state.message.length);
         return (
             <form onSubmit={this.handleSubmit} className="form">
+                {emojiPicker}
                 <textarea
                     required
                     maxLength="140"
@@ -46,6 +69,15 @@ class Formulaire extends PureComponent {
                     onKeyUp={this.onKeyUp}
                     value={this.state.message}
                 />
+                <button className="btnSmile"
+
+                    onClick={this.triggerPicker}
+                >
+
+                    <span role="img" aria-label="">
+                        😁
+            </span>
+                </button>
                 <div className="info">
                     {this.state.length - this.state.message.length}
                 </div>
@@ -53,7 +85,7 @@ class Formulaire extends PureComponent {
                     Envoyer !
                 </button>
 
-            </form>
+            </form >
         )
     }
 }
